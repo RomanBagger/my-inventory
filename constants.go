@@ -1,7 +1,7 @@
 package main
 
 const DbName = "inventory"
-const DbUser = "root"                  // It;s needs to be changed
-const DbPassword = "example"          // It;s needs to be changed
-const PublicIP = "35.239.20.154"     // It;s needs to be changed
+const DbUser = "root"
+const DbPassword = "+ho]]Q_c6s-=SEY" 
+const PublicIP = "35.239.20.154"
 const Port = 3306
