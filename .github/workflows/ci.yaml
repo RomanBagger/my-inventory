@@ -1,27 +1,43 @@
 name: Continuous Integration
-on: push
+
+on:
+  push:
+    branches:
+      - main
+
 env:
-    DB_NAME: test
-    DB_USER: root
-    DB_PASSWORD: +ho]]Q_c6s-=SEY
+  DB_NAME: test
+  DB_USER: root
+  DB_PASSWORD: '+ho]]Q_c6s-=SEY'
+
 jobs:
   run_code_checks:
     runs-on: ubuntu-latest
     steps:
-        - name: Set up MySQL
-          run: |
-            sudo /etc/init.d/mysql start
-            sudo mysql -e 'ALTER USER "${{env.DB_USER}}"@"localhost" IDENTIFIED BY "${{env.DB_PASSWORD}}";' -uroot -proot
-            sudo mysql -e 'CREATE DATABASE ${{env.DB_NAME}};' -u${{env.DB_PASSWORD}}" -p${{env.DB_PASSWORD}}
-        - name: Checkout Repo Code
-          uses: actions/ckeckout@v2
-        - name: Set Up Golang
-          uses: actions/setup-go@v2
-          with:
-            go-version: 1.23
-        - name: Run linting
-          run: |
-            go fmt ./...
-            go vet ./...
-        - name: Run tests
-          run: go test
+      - name: Set up MySQL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mysql-server
+          sudo service mysql start
+          sudo mysql -e "ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';"
+          sudo mysql -e "CREATE DATABASE ${{ env.DB_NAME }};" -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+
+      - name: Checkout Repo Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20' # Убедитесь, что версия Go актуальна
+
+      - name: Run linting
+        run: |
+          go fmt ./...
+          go vet ./...
+
+      - name: Run tests
+        env:
+          DB_NAME: ${{ env.DB_NAME }}
+          DB_USER: ${{ env.DB_USER }}
+          DB_PASSWORD: ${{ env.DB_PASSWORD }}
+        run: go test ./...
