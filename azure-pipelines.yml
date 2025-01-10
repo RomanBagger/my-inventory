@@ -24,6 +24,10 @@ steps:
     configMode: 'manual'
     cliProjectKey: 'kubernetes_kubernetes_89f1cddd-f66c-48d3-a885-68cefce4a5ff'
     cliSources: '.'
+    extraProperties: |
+      sonar.login=$(SONAR_TOKEN)
+      sonar.host.url=https://your-sonarqube-server
+      sonar.ssl.verificationMode=disable
 
 - script: |
     go version
