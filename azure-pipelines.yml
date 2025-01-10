@@ -19,10 +19,10 @@ steps:
 
 - task: SonarQubePrepare@7
   inputs:
-    SonarQube: 'sonarconnect'
+    SonarQube: 'myconnect'
     scannerMode: 'cli'
     configMode: 'manual'
-    cliProjectKey: 'kubernetes_kubernetes_89f1cddd-f66c-48d3-a885-68cefce4a5ff'
+    cliProjectKey: 'kubernetes_kubernetes_24c6e2eb-ad07-4115-8806-f9fa4128c635'
     cliSources: '.'
 
 - script: |
