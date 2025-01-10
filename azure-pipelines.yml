@@ -7,8 +7,8 @@ trigger: none
 
 pool:
   name: "Default"
-  demands: 
-    - agent.name -equals instance-20250109-223217
+  # demands: 
+  #   - agent.name -equals instance-20250109-223217
 
 steps:
 
