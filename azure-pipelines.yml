@@ -3,7 +3,10 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger: none
+trigger:
+ branches:
+   include:
+     - main
 
 pool:
   name: "Default"
@@ -31,9 +34,9 @@ steps:
     go build ./...
   displayName: 'Go Build'
 
-# - task: SonarQubeAnalyze@7
-#   inputs:
-#     jdkversion: 'JAVA_HOME_17_X64'
+- task: SonarQubeAnalyze@7
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
 
 - task: SonarQubePublish@7
   inputs:
