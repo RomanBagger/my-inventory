@@ -12,10 +12,10 @@ pool:
 
 steps:
 
-- task: GoTool@0
-  inputs:
-    version: '1.23'
-  displayName: "install golang"
+# - task: GoTool@0
+#   inputs:
+#     version: '1.23'
+#   displayName: "install golang"
 
 - task: SonarQubePrepare@7
   inputs:
