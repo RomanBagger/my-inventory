@@ -31,9 +31,9 @@ steps:
     go build ./...
   displayName: 'Go Build'
 
-- task: SonarQubeAnalyze@7
-  inputs:
-    jdkversion: 'JAVA_HOME_17_X64'
+# - task: SonarQubeAnalyze@7
+#   inputs:
+#     jdkversion: 'JAVA_HOME_17_X64'
 
 - task: SonarQubePublish@7
   inputs:
